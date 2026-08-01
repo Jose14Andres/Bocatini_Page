@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker local volumes (por si se montan aquí)
+pgdata/
+postgres-data/
+
+# Test / coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/

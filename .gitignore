@@ -1,0 +1,62 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+.venv/
+venv/
+ENV/
+env/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Docker local volumes / bind-mounted data (por si se montan en el proyecto)
+pgdata/
+postgres-data/
+postgres_data/
+db-data/
+**/volumes/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+*.sql-journal
