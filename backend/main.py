@@ -1,15 +1,18 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 from database import Base, engine
 import models  # noqa: F401: registra los modelos en los metadatos de Base.
 
 
-app = FastAPI(title="Bocatini API")
-
-
-@app.on_event("startup")
-def create_tables() -> None:
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
+    yield
+
+
+app = FastAPI(title="Bocatini API", lifespan=lifespan)
 
 
 @app.get("/api/status")
