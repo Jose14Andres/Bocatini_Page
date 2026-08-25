@@ -64,16 +64,17 @@ def seed() -> None:
             session.add(category)
             session.flush()  # Obtiene category.id antes del commit final.
 
-            for name, price, is_available in products:
-                session.add(
-                    Product(
-                        name=name,
-                        price=Decimal(price),
-                        is_available=is_available,
-                        category_id=category.id,
-                    )
+            category_products = [
+                Product(
+                    name=name,
+                    price=Decimal(price),
+                    is_available=is_available,
+                    category_id=category.id,
                 )
-                total_products += 1
+                for name, price, is_available in products
+            ]
+            session.add_all(category_products)
+            total_products += len(category_products)
 
         session.commit()
         print(
