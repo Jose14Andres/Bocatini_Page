@@ -26,5 +26,11 @@ class Product(Base):
     price = Column(Numeric(10, 2), nullable=False)
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=False)
     is_available = Column(Boolean, nullable=False, default=True)
+    # Sub-encabezado opcional dentro de una categoría (p. ej. "Café", "Batidos",
+    # "Recomendado"). Los productos con el mismo `group` se muestran juntos.
+    group = Column(String(100), nullable=True)
+    # Nota secundaria opcional (p. ej. "Dulce y salado" o los componentes del
+    # almuerzo). Se muestra bajo el nombre del plato.
+    description = Column(String(200), nullable=True)
 
     category = relationship("Category", back_populates="products")

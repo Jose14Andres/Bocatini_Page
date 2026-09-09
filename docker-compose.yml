@@ -29,6 +29,9 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/bocatini
+      # Orígenes permitidos por CORS (navegador -> backend). El frontend corre
+      # en el navegador sobre http://localhost:3000.
+      - CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
     volumes:
       - ./backend:/app
     depends_on:
@@ -44,6 +47,10 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # URL interna (contenedor -> contenedor) para fetch server-side en Next.
+      # Usa el nombre del servicio Docker, NO localhost.
+      - INTERNAL_API_URL=http://backend:8000
+      # URL pública para peticiones desde el navegador del cliente.
       - NEXT_PUBLIC_API_URL=http://localhost:8000
     command: npm run dev
     volumes:
