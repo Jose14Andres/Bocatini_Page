@@ -92,7 +92,6 @@ from fastapi import FastAPI
 import os
 os.environ["DATABASE_URL"] = "sqlite:///:memory:"
 from database import Base, engine
-import models
 
 
 @asynccontextmanager
