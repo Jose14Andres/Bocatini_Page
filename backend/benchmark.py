@@ -10,15 +10,19 @@ MENU = {
     ] for i in range(10)
 }
 
-def seed_original():
+def setup_database():
     # 1. Asegura que las tablas existan.
     Base.metadata.create_all(bind=engine)
 
     session = SessionLocal()
+    session.query(Product).delete()
+    session.query(Category).delete()
+    session.commit()
+    return session
+
+def seed_original():
+    session = setup_database()
     try:
-        session.query(Product).delete()
-        session.query(Category).delete()
-        session.commit()
 
         start = time.time()
         total_products = 0
@@ -45,14 +49,8 @@ def seed_original():
         session.close()
 
 def seed_optimized():
-    # 1. Asegura que las tablas existan.
-    Base.metadata.create_all(bind=engine)
-
-    session = SessionLocal()
+    session = setup_database()
     try:
-        session.query(Product).delete()
-        session.query(Category).delete()
-        session.commit()
 
         start = time.time()
         total_products = 0
